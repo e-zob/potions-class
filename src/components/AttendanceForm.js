@@ -3,33 +3,33 @@ import { useState, useEffect } from "react";
 
 function AttendanceForm(props) {
   const options = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw", "Sort Me!"];
-  const [nameInput, setNameInput] = useState("");
-  const [houseInput, setHouseInput] = useState("Gryffindor");
+  const [name, setName] = useState("");
+  const [house, setHouse] = useState("Gryffindor");
 
-  function handleNameInput(e) {
-    setNameInput(e.target.value);
+  function handleName(e) {
+    setName(e.target.value);
   }
 
-  function handleHouseInput(e) {
-    setHouseInput(e.target.value);
+  function handleHouse(e) {
+    setHouse(e.target.value);
   }
 
   function getNewStudentHouse() {
     const randomIndex = randomHouseInd();
-    return houseInput === "Sort Me!" ? options[randomIndex] : houseInput;
+    return house === "Sort Me!" ? options[randomIndex] : house;
   }
 
   function handleRegister(e) {
     e.preventDefault();
-    if (nameInput) {
+    if (name) {
       const newStudent = {
-        name: nameInput,
+        name: name,
         house: getNewStudentHouse(),
         time: new Date().toUTCString(),
         isLate: false,
       };
       props.updateStudents(newStudent);
-      setNameInput("");
+      setName("");
     }
   }
 
@@ -48,9 +48,9 @@ function AttendanceForm(props) {
   return (
     <div className="form-item">
       <label>Name</label>
-      <input className="form-field" type="text" value={nameInput} onChange={handleNameInput}></input>
+      <input className="form-field" type="text" value={name} onChange={handleName}></input>
       <label>House</label>
-      <select className="form-field" onChange={handleHouseInput}>
+      <select className="form-field" onChange={handleHouse}>
         {createHouseOptions()}
       </select>
       <button className="submit-btn" onClick={(e) => handleRegister(e)}>
