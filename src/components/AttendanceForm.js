@@ -15,7 +15,7 @@ function AttendanceForm(props) {
   }
 
   function getNewStudentHouse() {
-    const randomIndex = randomNum();
+    const randomIndex = randomHouseInd();
     return houseInput === "Sort Me!" ? houses[randomIndex] : houseInput;
   }
 
@@ -41,7 +41,7 @@ function AttendanceForm(props) {
     ));
   }
 
-  function randomNum() {
+  function randomHouseInd() {
     return Math.floor(Math.random() * 4);
   }
 

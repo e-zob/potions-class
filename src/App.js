@@ -17,26 +17,34 @@ function App(props) {
     });
   }
 
+  function getFormContainer() {
+    return (
+      <div className="form-wrapper">
+        <form className="attendance-form">
+          <AttendanceForm updateStudents={updateStudents} />
+        </form>
+      </div>
+    );
+  }
+
+  function getRegisterContainer() {
+    return (
+      <div className="register-wrapper">
+        <div id="register-component-header">
+          <span id="star-background">✷</span>
+          <h2 className="component-title">Register</h2>
+        </div>
+        <div className="register-list">{createRegisterCard()}</div>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <header className="title">Potions Class</header>
       <div className="app-wrapper">
-        <div className="app-lhs-container">
-          <div className="form-wrapper">
-            <form className="attendance-form">
-              <AttendanceForm updateStudents={updateStudents} />
-            </form>
-          </div>
-        </div>
-        <div className="app-rhs-container">
-          <div className="register-wrapper">
-            <div id="register-component-header">
-              <span id="star-background">✷</span>
-              <h2 className="component-title">Register</h2>
-            </div>
-            <div className="register-list">{createRegisterCard()}</div>
-          </div>
-        </div>
+        <div className="app-lhs-container">{getFormContainer()}</div>
+        <div className="app-rhs-container">{getRegisterContainer()}</div>
       </div>
     </div>
   );
